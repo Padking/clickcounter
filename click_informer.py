@@ -1,4 +1,5 @@
 import os
+from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 import requests
@@ -7,13 +8,10 @@ import requests
 load_dotenv()
 
 
-def main():
+def shorten_link(token, long_url):
     
-    TOKEN = os.environ['TOKEN']
-    long_url = 'https://hctraktor.org/team/players/'
-
     headers = {
-        'Authorization': f'Bearer {TOKEN}',
+        'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json',
     }
     url = 'https://api-ssl.bitly.com/v4/shorten'
@@ -23,9 +21,24 @@ def main():
     
     response = requests.post(url, json=payload, headers=headers)
     response.raise_for_status()
+    link = response.json()['link']
+    short_link = get_striped(link)
 
-    print(response.json()['link'])
+    return short_link
+
+
+def get_striped(url):
+    """Формирует URL без SCHEME-части."""
+
+    parsed = urlparse(url)
+    scheme = f'{parsed.scheme}://'
+    url_without_scheme_path = parsed.geturl().replace(scheme, '', 1)
+
+    return url_without_scheme_path
 
 
 if __name__ == '__main__':
-    main()
+    token = os.environ['TOKEN']
+    long_url = 'https://hctraktor.org/team/players/'
+    
+    print('Битлинк', shorten_link(token, long_url))
