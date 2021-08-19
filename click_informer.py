@@ -37,8 +37,17 @@ def get_striped(url):
     return url_without_scheme_path
 
 
-if __name__ == '__main__':
+def main():
     token = os.environ['TOKEN']
-    long_url = 'https://hctraktor.org/team/players/'
+    long_url = input('Введите ссылку ')
     
-    print('Битлинк', shorten_link(token, long_url))
+    try:
+        short_link = shorten_link(token, long_url)
+    except requests.exceptions.HTTPError as error:
+        print(error)
+    else:
+        print('Битлинк', short_link)
+
+
+if __name__ == '__main__':
+    main()
