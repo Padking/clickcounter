@@ -34,7 +34,19 @@ def count_clicks(bitlink, token, **kwargs):
     return clicks_count
 
 
-def shorten_link(token, long_url):
+def is_bitlink(long_url, token):
+    
+    headers = {
+        'Authorization': f'Bearer {token}',
+    }
+    short_link = get_striped(long_url)
+    url = f'https://api-ssl.bitly.com/v4/bitlinks/{short_link}'
+    response = requests.get(url, headers=headers)
+
+    return True if response.ok else False
+
+
+def shorten_link(long_url, token):
     
     headers = {
         'Authorization': f'Bearer {token}',
@@ -90,5 +102,28 @@ def get_clicks_count():
         print(clicks_count_msg)
 
 
+def main():
+    token = os.environ['TOKEN']
+    prompt = 'Введите ссылку '
+    long_url = input(prompt)
+
+    bitlink = is_bitlink(long_url, token)
+    if bitlink:
+        try:
+            clicks_count = count_clicks(long_url, token)
+        except requests.exceptions.HTTPError as error:
+            print(error)
+        else:
+            clicks_count_msg = f'По вашей ссылке прошли: {clicks_count} раз(а)'
+            print(clicks_count_msg)
+    else:
+        try:
+            short_link = shorten_link(long_url, token)
+        except requests.exceptions.HTTPError as error:
+            print(error)
+        else:
+            print('Битлинк', short_link)
+
+
 if __name__ == '__main__':
-    get_clicks_count()
+    main()
