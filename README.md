@@ -17,4 +17,4 @@
 
 
 
-* Определение понятий см. [тут](https://github.com/Padking/clickcounter/wiki)
+Определение понятий см. [тут](https://github.com/Padking/clickcounter/wiki)

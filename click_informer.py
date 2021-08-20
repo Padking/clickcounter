@@ -75,33 +75,6 @@ def get_striped(url):
     return url_without_scheme_path
 
 
-def get_shortened_bitlink():
-    token = os.environ['TOKEN']
-    prompt = 'Введите ссылку '
-    long_url = input(prompt)
-    
-    try:
-        short_link = shorten_link(token, long_url)
-    except requests.exceptions.HTTPError as error:
-        print(error)
-    else:
-        print('Битлинк', short_link)
-
-
-def get_clicks_count():
-    token = os.environ['TOKEN']
-    prompt = 'Введите ссылку '
-    bitlink = input(prompt)
-    
-    try:
-        clicks_count = count_clicks(bitlink, token)
-    except requests.exceptions.HTTPError as error:
-        print(error)
-    else:
-        clicks_count_msg = f'По вашей ссылке прошли: {clicks_count} раз(а)'
-        print(clicks_count_msg)
-
-
 def main():
     token = os.environ['TOKEN']
     prompt = 'Введите ссылку '
@@ -109,21 +82,17 @@ def main():
 
     bitlink = is_bitlink(long_url, token)
     if bitlink:
-        try:
-            clicks_count = count_clicks(long_url, token)
-        except requests.exceptions.HTTPError as error:
-            print(error)
-        else:
-            clicks_count_msg = f'По вашей ссылке прошли: {clicks_count} раз(а)'
-            print(clicks_count_msg)
+        clicks_count = count_clicks(long_url, token)
+        clicks_count_msg = f'По вашей ссылке прошли: {clicks_count} раз(а)'
+        return clicks_count_msg
     else:
-        try:
-            short_link = shorten_link(long_url, token)
-        except requests.exceptions.HTTPError as error:
-            print(error)
-        else:
-            print('Битлинк', short_link)
+        short_link = shorten_link(long_url, token)
+        short_link_msg = f'Битлинк {short_link}'
+        return short_link_msg
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        print(main())
+    except requests.exceptions.HTTPError as error:
+        print(error)
