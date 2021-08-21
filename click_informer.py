@@ -5,13 +5,7 @@ from dotenv import load_dotenv
 import requests
 
 
-def count_clicks(bitlink, token, **kwargs):
-
-    unit = kwargs.pop('unit', 'day')
-    units = kwargs.pop('units', -1)
-
-    if kwargs:  # фактические параметры всё-таки остались
-        raise TypeError(f'Неподдерживаемые параметры: {list(kwargs)}')
+def count_clicks(bitlink, token, unit='day', units=-1):
 
     headers = {
         'Authorization': f'Bearer {token}',
