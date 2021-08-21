@@ -75,7 +75,7 @@ def get_striped(url):
     return url_without_scheme_path
 
 
-def main():
+def start_click_informer():
     token = os.environ['TOKEN']
     prompt = 'Введите ссылку '
     long_url = input(prompt)
@@ -91,8 +91,12 @@ def main():
         return short_link_msg
 
 
-if __name__ == '__main__':
+def main():
     try:
-        print(main())
+        print(start_click_informer())
     except requests.exceptions.HTTPError as error:
         print(error)
+
+
+if __name__ == '__main__':
+    main()
