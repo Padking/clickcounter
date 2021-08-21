@@ -73,7 +73,7 @@ def get_striped(url):
 
 
 def start_click_informer():
-    token = os.environ['TOKEN']
+    token = os.environ['BITLY_GENERIC_ACCESS_TOKEN']
     prompt = 'Введите ссылку '
     long_url = input(prompt)
 
