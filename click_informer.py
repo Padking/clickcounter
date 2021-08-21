@@ -67,9 +67,9 @@ def get_striped(url):
 
     parsed = urlparse(url)
     scheme = f'{parsed.scheme}://'
-    url_without_scheme_path = parsed.geturl().replace(scheme, '', 1)
+    url_without_scheme = parsed.geturl().replace(scheme, '', 1)
 
-    return url_without_scheme_path
+    return url_without_scheme
 
 
 def start_click_informer():
