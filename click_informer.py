@@ -16,11 +16,11 @@ def count_clicks(bitlink, token, **kwargs):
     headers = {
         'Authorization': f'Bearer {token}',
     }
-    params = (
+    params = [
         ('unit', unit),
         ('units', units),
 
-    )
+    ]
 
     short_link = get_striped(bitlink)
     url = f'https://api-ssl.bitly.com/v4/bitlinks/{short_link}/clicks/summary'
@@ -40,7 +40,7 @@ def is_bitlink(long_url, token):
     url = f'https://api-ssl.bitly.com/v4/bitlinks/{short_link}'
     response = requests.get(url, headers=headers)
 
-    return True if response.ok else False
+    return response.ok
 
 
 def shorten_link(long_url, token):
