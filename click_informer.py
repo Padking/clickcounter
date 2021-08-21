@@ -5,9 +5,6 @@ from dotenv import load_dotenv
 import requests
 
 
-load_dotenv()
-
-
 def count_clicks(bitlink, token, **kwargs):
 
     unit = kwargs.pop('unit', 'day')
@@ -92,6 +89,9 @@ def start_click_informer():
 
 
 def main():
+    
+    load_dotenv()
+
     try:
         print(start_click_informer())
     except requests.exceptions.HTTPError as error:
