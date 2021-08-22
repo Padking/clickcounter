@@ -10,11 +10,10 @@ def count_clicks(bitlink, token, unit='day', units=-1):
     headers = {
         'Authorization': f'Bearer {token}',
     }
-    params = [
-        ('unit', unit),
-        ('units', units),
-
-    ]
+    params = {
+        'unit': unit,
+        'units': units,
+    }
 
     short_link = get_striped(bitlink)
     url = f'https://api-ssl.bitly.com/v4/bitlinks/{short_link}/clicks/summary'
@@ -45,7 +44,7 @@ def shorten_link(long_url, token):
     }
     url = 'https://api-ssl.bitly.com/v4/shorten'
     payload = {
-        'long_url': f'{long_url}'
+        'long_url': long_url
     }
     
     response = requests.post(url, json=payload, headers=headers)
