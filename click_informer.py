@@ -66,11 +66,7 @@ def get_striped(url):
     return url_without_scheme
 
 
-def start_click_informer():
-    token = os.environ['BITLY_GENERIC_ACCESS_TOKEN']
-    prompt = 'Введите ссылку '
-    long_url = input(prompt)
-
+def get_message_about(long_url, token):
     bitlink = is_bitlink(long_url, token)
     if bitlink:
         clicks_count = count_clicks(long_url, token)
@@ -85,9 +81,13 @@ def start_click_informer():
 def main():
     
     load_dotenv()
+    
+    token = os.environ['BITLY_GENERIC_ACCESS_TOKEN']
+    prompt = 'Введите ссылку '
+    long_url = input(prompt)
 
     try:
-        print(start_click_informer())
+        print(get_message_about(long_url, token))
     except requests.exceptions.HTTPError as error:
         print(error)
 
