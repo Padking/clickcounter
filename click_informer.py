@@ -4,6 +4,8 @@ from urllib.parse import urlparse
 from dotenv import load_dotenv
 import requests
 
+import inputs_handler
+
 
 def count_clicks(bitlink, token, unit='day', units=-1):
 
@@ -82,8 +84,9 @@ def main():
     load_dotenv()
     
     token = os.environ['BITLY_GENERIC_ACCESS_TOKEN']
-    prompt = 'Введите ссылку '
-    long_url = input(prompt)
+    parser = inputs_handler.createparser()
+    namespace = parser.parse_args()
+    long_url = namespace.link
 
     try:
         print(get_message_about(long_url, token))
