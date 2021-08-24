@@ -1,10 +1,9 @@
+import argparse
 import os
 from urllib.parse import urlparse
 
 from dotenv import load_dotenv
 import requests
-
-import inputs_handler
 
 
 def count_clicks(bitlink, token, unit='day', units=-1):
@@ -57,6 +56,13 @@ def shorten_link(long_url, token):
     return short_link
 
 
+def createparser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('link', help='Ссылка')
+
+    return parser
+
+
 def get_striped(url):
     """Формирует URL без SCHEME-части."""
 
@@ -84,7 +90,7 @@ def main():
     load_dotenv()
     
     token = os.environ['BITLY_GENERIC_ACCESS_TOKEN']
-    parser = inputs_handler.createparser()
+    parser = createparser()
     namespace = parser.parse_args()
     long_url = namespace.link
 

@@ -39,16 +39,16 @@ cd clickcounter
 ```bash
 pip install -r requirements.txt # установка зависимостей
 ```
-`python click_informer.py <link>`  # запуск скрипта
+`python main.py <link>`  # запуск скрипта
 
 ### Пример запуска
 
 ```bash
-$ python click_informer.py https://hctraktor.org/team/players/
+$ python main.py https://hctraktor.org/team/players/
 Битлинк bit.ly/3swekD9
 ```
 ```bash
-$ python click_informer.py https://bit.ly/3swekD9
+$ python main.py https://bit.ly/3swekD9
 По вашей ссылке прошли: 6 раз(а)
 ```
 
