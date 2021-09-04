@@ -26,7 +26,7 @@ def count_clicks(bitlink, token, unit='day', units=-1):
 
 
 def is_bitlink(long_url, token):
-    
+
     headers = {
         'Authorization': f'Bearer {token}',
     }
@@ -38,7 +38,7 @@ def is_bitlink(long_url, token):
 
 
 def shorten_link(long_url, token):
-    
+
     headers = {
         'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ def shorten_link(long_url, token):
     payload = {
         'long_url': long_url
     }
-    
+
     response = requests.post(url, json=payload, headers=headers)
     response.raise_for_status()
     link = response.json()['link']
@@ -86,9 +86,9 @@ def get_message_about(long_url, token):
 
 
 def main():
-    
+
     load_dotenv()
-    
+
     token = os.environ['BITLY_GENERIC_ACCESS_TOKEN']
     parser = createparser()
     namespace = parser.parse_args()

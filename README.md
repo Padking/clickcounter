@@ -11,16 +11,12 @@
 * Для начала работы требует:
   * [регистрации](https://bit.ly/),
   * получения [токена](https://bitly.com/a/oauth_apps).
-* Исходя из вида _long URL_, передаваемого пользователем в качестве параметра скрипта:
+* Исходя из вида [long URL](https://github.com/Padking/clickcounter/wiki), передаваемого пользователем в качестве параметра скрипта:
   * формирует битлинк,
   * считает кол-во переходов по битлинку,
     + подсчёт управляется query-параметрами [метода](https://dev.bitly.com/api-reference#getClicksSummaryForBitlink).
-* обрабатывает исключения при некорректном вводе _long URL_* или _bitlink_* от пользователя.
+* обрабатывает исключения при некорректном вводе long URL или [bitlink](https://github.com/Padking/clickcounter/wiki) от пользователя.
 
-
-### Используемые технологии
-
-* [requests](https://docs.python-requests.org/en/master/)
 
 ### Требования к окружения
 
@@ -29,17 +25,31 @@
 
 ### Установка
 
+- Клонирование проекта:
 ```bash
-git clone https://github.com/Padking/clickcounter.git  # клонирование проекта
+git clone https://github.com/Padking/clickcounter.git
 cd clickcounter
 ```
-`mkvirtualenv -p` <path_to_python> <virtualenv's_name>  # создание каталога виртуального окружения (ВО)**
+- Создание каталога виртуального окружения (ВО)*:
 
-`setvirtualenvproject` <virtualenv's_path> <project's_path>  # связывание каталогов ВО и проекта
+`mkvirtualenv -p` <path_to_python> <virtualenv's_name>
+
+- Связывание каталогов ВО и проекта:
+
+`setvirtualenvproject` <virtualenv's_path> <project's_path>
+
+- Установка зависимостей:
+
 ```bash
-pip install -r requirements.txt # установка зависимостей
+pip install -r requirements.txt
 ```
-`python main.py <link>`  # запуск скрипта
+- Запуск скрипта:
+
+`python main.py <link>`
+
+
+\* с использованием [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/index.html)
+
 
 ### Пример запуска
 
@@ -51,8 +61,3 @@ $ python main.py https://hctraktor.org/team/players/
 $ python main.py https://bit.ly/3swekD9
 По вашей ссылке прошли: 6 раз(а)
 ```
-
-
-\* определение понятий см. [тут](https://github.com/Padking/clickcounter/wiki).
-
-\** с использованием [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/index.html)
