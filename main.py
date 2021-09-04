@@ -56,9 +56,14 @@ def shorten_link(long_url, token):
     return short_link
 
 
-def createparser():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('link', help='Ссылка')
+def create_parser():
+    description = (
+        'Формирует битлинк и '
+        'считает кол-во переходов по битлинку'
+    )
+    help = 'Длинная ссылка (одна из 2-ух разновидностей)'
+    parser = argparse.ArgumentParser(description=description)
+    parser.add_argument('link', help=help)
 
     return parser
 
@@ -90,9 +95,9 @@ def main():
     load_dotenv()
 
     token = os.environ['BITLY_GENERIC_ACCESS_TOKEN']
-    parser = createparser()
-    namespace = parser.parse_args()
-    long_url = namespace.link
+    parser = create_parser()
+    args = parser.parse_args()
+    long_url = args.link
 
     try:
         print(get_message_about(long_url, token))
