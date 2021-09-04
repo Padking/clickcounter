@@ -22,6 +22,16 @@
 
 * Python 3.7 и выше,
 * Linux/Windows.
+* Переменные окружения (ПеО).
+
+Проект настраивается через ПеО, достаточно указать их в файле `.env`.
+Передача значений ПеО происходит с использованием [python-dotenv](https://pypi.org/project/python-dotenv/).
+
+#### Параметры проекта
+
+|       Ключ        |     Значение     |   По умолчанию   |
+|-------------------|------------------|------------------|
+|`BITLY_GENERIC_ACCESS_TOKEN`| Токен сервиса [bitly](https://bit.ly/) | - |
 
 ### Установка
 
@@ -39,7 +49,7 @@ pip install -r requirements.txt
 python main.py <link>
 ```
 
-\* с использованием [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/index.html)
+\* с использованием [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/index.html).
 
 
 ### Пример запуска
