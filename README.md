@@ -25,28 +25,19 @@
 
 ### Установка
 
-- Клонирование проекта:
+- Клонирование проекта,
+- создание каталога виртуального окружения (ВО)*,
+-  связывание каталогов ВО и проекта,
+-  установка зависимостей,
+-  запуск скрипта:
 ```bash
 git clone https://github.com/Padking/clickcounter.git
 cd clickcounter
-```
-- Создание каталога виртуального окружения (ВО)*:
-
-`mkvirtualenv -p` <path_to_python> <virtualenv's_name>
-
-- Связывание каталогов ВО и проекта:
-
-`setvirtualenvproject` <virtualenv's_path> <project's_path>
-
-- Установка зависимостей:
-
-```bash
+mkvirtualenv -p <path to python> <name of virtualenv>
+setvirtualenvproject <path to virtualenv> <path to project>
 pip install -r requirements.txt
+python main.py <link>
 ```
-- Запуск скрипта:
-
-`python main.py <link>`
-
 
 \* с использованием [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/index.html)
 
