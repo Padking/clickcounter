@@ -78,7 +78,7 @@ def get_striped(url):
     return url_without_scheme
 
 
-def get_message_about(long_url, token):
+def get_report_about(long_url, token):
     bitlink = is_bitlink(long_url, token)
     if bitlink:
         clicks_count = count_clicks(long_url, token)
@@ -100,7 +100,7 @@ def main():
     long_url = args.link
 
     try:
-        print(get_message_about(long_url, token))
+        print(get_report_about(long_url, token))
     except requests.exceptions.HTTPError as error:
         print(error)
 
