@@ -78,18 +78,6 @@ def get_striped(url):
     return url_without_scheme
 
 
-def get_report_about(long_url, token):
-    bitlink = is_bitlink(long_url, token)
-    if bitlink:
-        clicks_count = count_clicks(long_url, token)
-        clicks_count_msg = f'По вашей ссылке прошли: {clicks_count} раз(а)'
-        return clicks_count_msg
-    else:
-        short_link = shorten_link(long_url, token)
-        short_link_msg = f'Битлинк {short_link}'
-        return short_link_msg
-
-
 def main():
 
     load_dotenv()
@@ -100,7 +88,15 @@ def main():
     long_url = args.link
 
     try:
-        print(get_report_about(long_url, token))
+        bitlink = is_bitlink(long_url, token)
+        if bitlink:
+            clicks_count = count_clicks(long_url, token)
+            clicks_count_msg = f'По вашей ссылке прошли: {clicks_count} раз(а)'
+            print(clicks_count_msg)
+        else:
+            short_link = shorten_link(long_url, token)
+            short_link_msg = f'Битлинк {short_link}'
+            print(short_link_msg)
     except requests.exceptions.HTTPError as error:
         print(error)
 
